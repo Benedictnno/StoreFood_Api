@@ -27,11 +27,11 @@ const storedFoodSchema = mongoose.Schema(
     note: {
       type: String,
     },
-    // createdBy: {
-    //   type: mongoose.Types.ObjectId,
-    //   ref: "Users",
-    //   required: [true, "Please Provide a valid user id"],
-    // },
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
+      required: [true, "Please Provide a valid user id"],
+    },
   },
   { timestamps: true }
 );
