@@ -15,9 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 const helmet = require("helmet");
 const cors = require("cors");
 const xss = require("xss-clean");
-// app.use(helmet());
-// app.use(cors());
-// app.use(xss());
+app.use(helmet());
+app.use(cors());
+app.use(xss());
+
 function start() {
   connectDB(process.env.MONGODB_URI);
   app.listen(Port, () => {
