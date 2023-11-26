@@ -10,13 +10,24 @@ app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1", authMiddleware, storedFoodRouter);
 app.use(express.urlencoded({ extended: true }));
-
+app.get("/", (req, res) => {
+  res.send("hello");
+});
 // security packages
 const helmet = require("helmet");
 const cors = require("cors");
 const xss = require("xss-clean");
+
+const corsOptions = {
+  origin: "http://localhost:5173", // Change this to your actual frontend origin
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+
 app.use(helmet());
-app.use(cors());
 app.use(xss());
 
 function start() {
