@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const storedFoodSchema = mongoose.Schema(
   {
@@ -24,6 +24,12 @@ const storedFoodSchema = mongoose.Schema(
       type: String,
       required: [true, "Please provide an image"],
     },
+    type: {
+      type: String,
+      required: [true, "Please provide a type"],
+      enum: ["meal", "Drink"],
+      default: "meal",
+    },
     note: {
       type: String,
     },
@@ -36,4 +42,4 @@ const storedFoodSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("storedMeals",storedFoodSchema)
+module.exports = mongoose.model("storedMeals", storedFoodSchema);
