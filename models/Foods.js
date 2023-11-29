@@ -27,7 +27,7 @@ const storedFoodSchema = mongoose.Schema(
     type: {
       type: String,
       required: [true, "Please provide a type"],
-      enum: ["meal", "Drink"],
+      enum: ["meal", "drink"],
       default: "meal",
     },
     note: {
