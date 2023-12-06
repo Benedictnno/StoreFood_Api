@@ -8,7 +8,10 @@ const register = async (req, res) => {
   console.log('====================================');
   const user = await Users.create(req.body)
   const token = user.createJWT();
-  res.status(StatusCodes.CREATED).json({ user, token });
+  res.status(StatusCodes.CREATED).json({   user: {
+      name: user.name,
+      email: user.email,
+    }, token });
 };
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -22,7 +25,8 @@ const login = async (req, res) => {
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid email");
 
   const token = user.createJWT();
-  res.status(StatusCodes.OK).json({ user, token });
+  res.status(StatusCodes.OK).json({ user:{ name: user.name,
+      email: user.email}, token });
 };
 
 module.exports = { register, login };
